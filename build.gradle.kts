@@ -47,13 +47,13 @@ java {
 
 bukkit {
     name = "STUtils"
+    description = "Utils Plugin von SpurKomet und tbodyowski"
     apiVersion = "1.18"
     authors = listOf(
         "SpurKomet",
         "tbodyowski",
     )
-    depend = listOf("LibsDisguises", "ProtocolLib")
-    main = "$group.youtuberideen.YoutuberIdeen"
+    main = "$group.stutils.InternalMainClass"
     version = getVersion().toString()
     libraries = listOf(
         "net.axay:kspigot:1.18.2",
