@@ -1,6 +1,9 @@
 package de.spurowski.stutils
 
 import de.spurowski.stutils.JMain.*
+import de.spurowski.stutils.settings.Config
+import de.spurowski.stutils.settings.settings
+import de.spurowski.stutils.utils.Commands
 import net.axay.kspigot.main.KSpigot
 
 class InternalMainClass : KSpigot() {
@@ -12,14 +15,21 @@ class InternalMainClass : KSpigot() {
 
     override fun load() {
         INSTANCE = this
+        var config = Config()
         tOnLoad()
+        settings.load()
     }
 
     override fun startup() {
         tOnEnable()
+        Listener()
+        setGets()
+        Commands()
     }
 
     override fun shutdown() {
         tOnDisable()
+        settings.save()
+        de.spurowski.stutils.settings.save()
     }
 }
