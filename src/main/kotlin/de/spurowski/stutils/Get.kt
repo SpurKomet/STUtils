@@ -25,7 +25,7 @@ fun setGets(){
     "Timer".addPrefix(color = col("green"))
 
     //Usages
-    setUsage("timer", "Verwendung: ${colors.get("command")}/timer ${colors.get("arg")}resume ${colors.get("default")}| ${colors.get("arg")}pause ${colors.get("default")}| ${colors.get("arg")}reset", "timer")
+    setUsage("timer", "Verwendung: ${colors.get("command")}/timer ${colors.get("arg")}resume ${colors.get("default")}| ${colors.get("arg")}pause ${colors.get("default")}| ${colors.get("arg")}reset ${colors.get("default")}| ${colors.get("arg")}settings", "timer")
 }
 
 

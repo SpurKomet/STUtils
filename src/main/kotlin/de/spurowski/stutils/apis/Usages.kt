@@ -29,7 +29,7 @@ fun setUsage(name: String,
 fun getUsage(name: String, prefix: Boolean = true): String {
     if(usages.get(name) != null){
         if (prefix){
-            return "${usages.get(name)!!.prefix} ${usages.get(name)!!.usage}"
+            return "${usages.get(name)!!.prefix}${usages.get(name)!!.usage}"
         }else{
             return usages.get(name)!!.usage
         }

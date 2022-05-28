@@ -6,11 +6,11 @@ import net.md_5.bungee.api.ChatColor
 
 private object prefix{
     val prefixDefault = "["
-    val prefixDefaultColor = col("light_gray")
+    val prefixDefaultColor = col("gray")
     val prefixTexts = HashMap<String, String>()
-    val prefixTextColor = col("Blue")
+    val prefixTextColor = col("blue")
     val postfixDefault = "]"
-    val postfixDefaultColor = col("light_gray")
+    val postfixDefaultColor = col("gray")
 }
 fun String.addPrefix(name: String = this.lowercase(),
                      color: ChatColor = prefix.prefixTextColor,

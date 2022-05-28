@@ -38,9 +38,6 @@ fun Boolean.setConf(path: String){
 fun Int.setConf(path: String){
     InternalMainClass.INSTANCE.config.set(path, this)
 }
-fun TextColor.setConf(path: String){
-    InternalMainClass.INSTANCE.config.set(path, this)
-}
 
 fun getConf(path: String, orginal: Boolean): Boolean{
     var ret: Boolean = orginal

@@ -2,6 +2,7 @@ package de.spurowski.stutils.settings
 
 import kotlinx.serialization.json.Json
 import net.axay.kspigot.chat.KColors
+import net.axay.kspigot.chat.col
 import net.axay.kspigot.config.kSpigotConfig
 import org.bukkit.World
 import org.bukkit.configuration.file.YamlConfiguration
@@ -24,12 +25,12 @@ object settings {
         }
         object look{
             object onRun{
-                var color = KColors.GOLD
+                var color = col("gold")
                 var bold = true
                 var italic = false
             }
             object onPaused{
-                var color = KColors.RED
+                var color = col("red")
                 var bold = false
                 var italic = true
             }
@@ -59,10 +60,10 @@ object settings {
         timer.time.sec.setConf("settings.timer.time.sec")
         timer.time.min.setConf("settings.timer.time.min")
         timer.time.h.setConf("settings.timer.time.h")
-        timer.look.onRun.color.setConf("settings.timer.look.onRun.color")
+        //timer.look.onRun.color.setConf("settings.timer.look.onRun.color")
         timer.look.onRun.bold.setConf("settings.timer.look.onRun.bold")
         timer.look.onRun.italic.setConf("settings.timer.look.onRun.italic")
-        timer.look.onPaused.color.setConf("settings.timer.look.onPaused.color")
+        //timer.look.onPaused.color.setConf("settings.timer.look.onPaused.color")
         timer.look.onPaused.bold.setConf("settings.timer.look.onPaused.bold")
         timer.look.onPaused.italic.setConf("settings.timer.look.onPaused.italic")
         // --- pos ---
