@@ -32,8 +32,8 @@ fun runTimer(){
                 time--
                 if (time == 0){
                     broadcast("${colors.get("error")}GameOver - Zeit abgelaufen")
-                    settings.timer.countdown = false
-                    settings.timer.isRun = false
+                    countdown = false
+                    isRun = false
                     onlinePlayers.forEach { it.gameMode = GameMode.SPECTATOR }
                 }
             }else{
@@ -48,9 +48,8 @@ fun runTimer(){
 fun barTimer(){
     if (!isRun){
         onlinePlayers.forEach {
-            it.actionBar("${settings.timer.look.onPaused.color}" +
-                    "${if(settings.timer.look.onPaused.italic) col("italic") else ""}" +
-                    "${if(settings.timer.look.onPaused.bold) col("italic") else ""}" +
+            it.actionBar(
+                col(settings.timer.look.colorOnPaused).toString() +
                     "${if (h < 10)"0$h" else h}:" +
                     "${if (min < 10)"0$min" else min}:" +
                     "${if (sec < 10)"0$sec" else sec}" +
@@ -59,9 +58,8 @@ fun barTimer(){
     }
     else{
         onlinePlayers.forEach {
-            it.actionBar("${settings.timer.look.onRun.color}" +
-                    "${if(settings.timer.look.onRun.italic) col("italic") else ""}" +
-                    "${if(settings.timer.look.onRun.bold) col("italic") else ""}" +
+            it.actionBar(
+                col(settings.timer.look.colorOnRun).toString() +
                     "${if (h < 10)"0$h" else h}:" +
                     "${if (min < 10)"0$min" else min}:" +
                     "${if (sec < 10)"0$sec" else sec}")

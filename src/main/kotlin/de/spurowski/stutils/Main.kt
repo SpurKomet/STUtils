@@ -29,7 +29,7 @@ class InternalMainClass : KSpigot() {
 
     override fun shutdown() {
         tOnDisable()
-        settings.save()
         de.spurowski.stutils.settings.save()
+        settings.save()
     }
 }

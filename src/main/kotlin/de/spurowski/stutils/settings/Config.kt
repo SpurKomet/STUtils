@@ -38,6 +38,9 @@ fun Boolean.setConf(path: String){
 fun Int.setConf(path: String){
     InternalMainClass.INSTANCE.config.set(path, this)
 }
+fun String.setConf(path: String){
+    InternalMainClass.INSTANCE.config.set(path, this)
+}
 
 fun getConf(path: String, orginal: Boolean): Boolean{
     var ret: Boolean = orginal
@@ -49,8 +52,10 @@ fun getConf(path: String, orginal: Int): Int{
     if (configuration.contains(path)){ret = configuration.getInt(path)}
     return ret
 }
-/*fun getConf(path: String, orginal: TextColor): Int{
-    var ret: TextColor = orginal
-    if (configuration.contains(path)){ret = configuration.getString(path)}
+fun getConf(path: String, orginal: String): String{
+    var ret: String? = orginal
+    if (configuration.contains(path)){configuration.getString(path)}
+    if (ret != null) return ret
+    ret = ""
     return ret
-}*/
+}

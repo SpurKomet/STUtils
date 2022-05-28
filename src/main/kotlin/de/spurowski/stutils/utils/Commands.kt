@@ -3,7 +3,11 @@ package de.spurowski.stutils.utils
 import de.spurowski.stutils.apis.getPrefix
 import de.spurowski.stutils.apis.printUsage
 import de.spurowski.stutils.colors
+import de.spurowski.stutils.settings.save
 import de.spurowski.stutils.settings.settings
+import de.spurowski.stutils.settings.settings.timer.isRun
+import de.spurowski.stutils.settings.settings.timer.time.time
+import de.spurowski.stutils.settings.settings.timer.timer
 import de.spurowski.stutils.utils.timer.TimerGUI
 import net.axay.kspigot.chat.col
 import net.axay.kspigot.commands.command
@@ -16,8 +20,7 @@ import net.axay.kspigot.gui.openGUI
 class Commands{
     val test = command("test"){
         runs {
-            broadcast("test")
-            this.player.sendMessage("${col("red")}test")
+            save()
         }
     }
     val timerCommand = command("timer"){
@@ -26,22 +29,22 @@ class Commands{
         }
         literal("resume"){
             runs{
-                if (!settings.timer.timer){
-                    settings.timer.timer = true
+                if (!timer){
+                    timer = true
                     runTimer()
                 }
-                settings.timer.isRun = true
+                isRun = true
             }
         }
         literal("pause"){
             runs{
-                settings.timer.isRun = false
+                isRun = false
             }
         }
         literal("reset"){
             runs{
-                settings.timer.isRun = false
-                settings.timer.time.time = 0
+                isRun = false
+                time = 0
                 calcToRead()
             }
         }
@@ -49,6 +52,7 @@ class Commands{
             runs{
                 if (this.player.isOp){
                     this.player.openGUI(TimerGUI().gui)
+                    isRun = false
                 }else{
                     this.player.sendMessage("${getPrefix("plugin")}${colors.get("error")}Du brauchst ${colors.get("admin")}op${colors.get("error")}, um diesen command auszuführen")
                 }

@@ -24,16 +24,8 @@ object settings {
             var h = 0
         }
         object look{
-            object onRun{
-                var color = col("gold")
-                var bold = true
-                var italic = false
-            }
-            object onPaused{
-                var color = col("red")
-                var bold = false
-                var italic = true
-            }
+            var colorOnRun = "gold"
+            var colorOnPaused = "red"
         }
     }
 
@@ -60,12 +52,8 @@ object settings {
         timer.time.sec.setConf("settings.timer.time.sec")
         timer.time.min.setConf("settings.timer.time.min")
         timer.time.h.setConf("settings.timer.time.h")
-        //timer.look.onRun.color.setConf("settings.timer.look.onRun.color")
-        timer.look.onRun.bold.setConf("settings.timer.look.onRun.bold")
-        timer.look.onRun.italic.setConf("settings.timer.look.onRun.italic")
-        //timer.look.onPaused.color.setConf("settings.timer.look.onPaused.color")
-        timer.look.onPaused.bold.setConf("settings.timer.look.onPaused.bold")
-        timer.look.onPaused.italic.setConf("settings.timer.look.onPaused.italic")
+        timer.look.colorOnPaused.setConf("timer.look.colorOnPaused")
+        timer.look.colorOnRun.setConf("timer.look.colorOnRun")
         // --- pos ---
         position.position.setConf("settings.position.position")
         position.move.setConf("settings.position.move")
@@ -83,12 +71,8 @@ object settings {
         timer.time.sec = getConf("settings.timer.time.sec", timer.time.sec)
         timer.time.min = getConf("settings.timer.time.min", timer.time.min)
         timer.time.h = getConf("settings.timer.time.h", timer.time.h)
-        //timer.look.onRun.color = getConf("settings.timer.look.onRun.color", timer.look.onRun.color)
-        timer.look.onRun.bold = getConf("settings.timer.look.onRun.bold", timer.look.onRun.bold)
-        timer.look.onRun.italic = getConf("settings.timer.look.onRun.italic", timer.look.onRun.italic)
-        //timer.look.onPaused.color = getConf("settings.timer.look.onPaused.color", timer.look.onPaused.color)
-        timer.look.onPaused.bold = getConf("settings.timer.look.onPaused.bold", timer.look.onPaused.bold)
-        timer.look.onPaused.italic = getConf("settings.timer.look.onPaused.italic", timer.look.onPaused.italic)
+        timer.look.colorOnPaused = getConf("settings.timer.look.colorOnPaused", timer.look.colorOnPaused)
+        timer.look.colorOnRun = getConf("settings.timer.look.colorOnRun", timer.look.colorOnRun)
 
         // --- pos ---
         position.position = getConf("settings.position.position", position.position)
