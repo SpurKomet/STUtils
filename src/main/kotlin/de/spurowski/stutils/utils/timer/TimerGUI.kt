@@ -2,6 +2,10 @@ package de.spurowski.stutils.utils.timer
 
 import de.spurowski.stutils.apis.getPrefix
 import de.spurowski.stutils.colors
+import de.spurowski.stutils.settings.settings
+import de.spurowski.stutils.settings.settings.timer.challenges.bob
+import de.spurowski.stutils.settings.settings.timer.challenges.enderDragon
+import de.spurowski.stutils.settings.settings.timer.challenges.wither
 import net.axay.kspigot.chat.col
 import net.axay.kspigot.gui.GUIType
 import net.axay.kspigot.gui.Slots
@@ -18,6 +22,7 @@ import de.spurowski.stutils.settings.settings.timer.look.colorOnRun
 import de.spurowski.stutils.utils.calcToSec
 import de.spurowski.stutils.utils.runTimer
 import net.axay.kspigot.chat.literalText
+import net.axay.kspigot.extensions.broadcast
 
 class TimerGUI {
     private val timerColor = col("green")
@@ -26,8 +31,11 @@ class TimerGUI {
         defaultPage = 0
 
         page(0) {
-            this.placeholder(Slots.All, TimerDisplayItems.fill)
-            this.button(Slots.RowFourSlotOne, TimerDisplayItems.timer()) {
+            this.placeholder(Slots.RowFive, TimerDisplayItems.fill)
+            this.placeholder(Slots.RowFour, TimerDisplayItems.fill)
+            this.placeholder(Slots.RowThree, TimerDisplayItems.fill)
+            this.placeholder(Slots.RowTwo, TimerDisplayItems.line)
+            this.button(Slots.RowFiveSlotOne, TimerDisplayItems.timer()) {
                 if (timer) {
                     timer = false
                     it.player.sendMessage(
@@ -48,7 +56,7 @@ class TimerGUI {
             }
 
             //--------------- timer.sec ----------------------
-            this.button(Slots.RowFourSlotFour, TimerDisplayItems.sec()) {
+            this.button(Slots.RowFiveSlotFour, TimerDisplayItems.sec()) {
                 if (it.bukkitEvent.click.isLeftClick) {
                     if(sec < 59) {
                         sec++
@@ -72,7 +80,7 @@ class TimerGUI {
             }
 
             //--------------- timer.min ----------------------
-            this.button(Slots.RowFourSlotFive, TimerDisplayItems.min()) {
+            this.button(Slots.RowFiveSlotFive, TimerDisplayItems.min()) {
                 if (it.bukkitEvent.click.isLeftClick) {
                     if(min < 59) {
                         min++
@@ -96,7 +104,7 @@ class TimerGUI {
             }
 
             //--------------- timer.h ----------------------
-            this.button(Slots.RowFourSlotSix, TimerDisplayItems.h()) {
+            this.button(Slots.RowFiveSlotSix, TimerDisplayItems.h()) {
                 if (it.bukkitEvent.click.isLeftClick) {
                     if(h < 24) {
                         h++
@@ -120,7 +128,7 @@ class TimerGUI {
             }
 
             //--------------- timer.countdown ----------------------
-            this.button(Slots.RowFourSlotNine, TimerDisplayItems.countdown()) {
+            this.button(Slots.RowFiveSlotNine, TimerDisplayItems.countdown()) {
                 if(countdown) {
                     countdown = false
                     it.player.sendMessage("${getPrefix("timer")}${timerColor}Countdown ${colors["default"]}wurde auf ${colors["disable"]}$countdown ${colors["default"]}gesetzt.")
@@ -135,8 +143,24 @@ class TimerGUI {
                 }
                 it.bukkitEvent.currentItem = TimerDisplayItems.countdown()
             }
-            this.pageChanger(Slots.RowTwoSlotFour, colorSelectItem(colorOnRun, itemName = "color on run"), 1)
-            this.pageChanger(Slots.RowTwoSlotSix, colorSelectItem(colorOnPaused, itemName = "color on paused"), 2)
+
+            //--------------- timer.cols ----------------------
+            this.placeholder(Slots.RowThreeSlotFour, colorSelectItem(colorOnRun, itemName = "color on run - ${colors["error"]}maintenance"))
+            this.placeholder(Slots.RowThreeSlotSix, colorSelectItem(colorOnPaused, itemName = "color on paused - ${colors["error"]}maintenance"))
+
+            //--------------- timer.challenges ----------------------
+            this.button(Slots.RowOneSlotOne, TimerDisplayItems.enderdragon()){
+                enderDragon = !enderDragon
+                it.bukkitEvent.currentItem = TimerDisplayItems.enderdragon()
+            }
+            this.button(Slots.RowOneSlotTwo, TimerDisplayItems.bob()){
+                bob = !bob
+                it.bukkitEvent.currentItem = TimerDisplayItems.bob()
+            }
+            this.button(Slots.RowOneSlotThree, TimerDisplayItems.wither()){
+                wither = !wither
+                it.bukkitEvent.currentItem = TimerDisplayItems.wither()
+            }
         }
         page(1){
             //this.button(Slots.RowFiveSlotOne, colorSelectItem("black", colorOnRun)){ colorOnRun = "black"; it.bukkitEvent.currentItem = colorSelectItem("black", colorOnRun)}
@@ -155,7 +179,7 @@ class TimerGUI {
             //this.button(Slots.RowFourSlotFive, colorSelectItem("light_purple", colorOnRun)){ colorOnRun = "light_purple"; it.bukkitEvent.currentItem = colorSelectItem("light_purple", colorOnRun)}
             //this.button(Slots.RowFourSlotSix, colorSelectItem("yellow", colorOnRun)){ colorOnRun = "black"; it.bukkitEvent.currentItem = colorSelectItem("yellow", colorOnRun)}
             //this.button(Slots.RowFourSlotSeven, colorSelectItem("white", colorOnRun)){ colorOnRun = "black"; it.bukkitEvent.currentItem = colorSelectItem("white", colorOnRun)}
-            this.pageChanger(Slots.RowOneSlotNine, TimerDisplayItems.back, 0)
+            //this.pageChanger(Slots.RowOneSlotNine, TimerDisplayItems.back, 0, null)
         }
         page(2){
             /*this.button(Slots.RowFiveSlotOne, colorSelectItem("black", colorOnPaused)){ colorOnPaused = "black"; it.bukkitEvent.currentItem = colorSelectItem("black", colorOnPaused)}
@@ -174,7 +198,7 @@ class TimerGUI {
             this.button(Slots.RowFourSlotFive, colorSelectItem("light_purple", colorOnPaused)){ colorOnPaused = "light_purple"; it.bukkitEvent.currentItem = colorSelectItem("light_purple", colorOnPaused)}
             this.button(Slots.RowFourSlotSix, colorSelectItem("yellow", colorOnPaused)){ colorOnPaused = "black"; it.bukkitEvent.currentItem = colorSelectItem("yellow", colorOnPaused)}
             this.button(Slots.RowFourSlotSeven, colorSelectItem("white", colorOnPaused)){ colorOnPaused = "black"; it.bukkitEvent.currentItem = colorSelectItem("white", colorOnPaused)}*/
-            this.pageChanger(Slots.RowOneSlotNine, TimerDisplayItems.back, 0)
+            //this.pageChanger(Slots.RowOneSlotNine, TimerDisplayItems.back, 0, null)
         }
     }
 }

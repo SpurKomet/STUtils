@@ -1,6 +1,10 @@
 package de.spurowski.stutils.utils.timer
 
 import de.spurowski.stutils.colors
+import de.spurowski.stutils.settings.settings
+import de.spurowski.stutils.settings.settings.timer.challenges.bob
+import de.spurowski.stutils.settings.settings.timer.challenges.enderDragon
+import de.spurowski.stutils.settings.settings.timer.challenges.wither
 import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
 import de.spurowski.stutils.settings.settings.timer.time.h
@@ -9,7 +13,11 @@ import de.spurowski.stutils.settings.settings.timer.time.sec
 import de.spurowski.stutils.settings.settings.timer.timer
 import de.spurowski.stutils.settings.settings.timer.countdown
 import net.axay.kspigot.chat.literalText
+import net.axay.kspigot.data.nbtData
 import net.axay.kspigot.items.*
+import org.bukkit.craftbukkit.v1_18_R1.util.CraftMagicNumbers
+import org.bukkit.enchantments.Enchantment
+import org.bukkit.inventory.ItemFlag
 
 
 object TimerDisplayItems {
@@ -52,6 +60,9 @@ object TimerDisplayItems {
     fun countdown(): ItemStack {
         return itemStack(Material.COMMAND_BLOCK) {
             amount = 1
+            if (countdown){
+                addUnsafeEnchantment(Enchantment.DURABILITY, 1)
+            }
             meta {
                 name = literalText("${colors["value"]}Countdown ${colors["default"]}[${
                     if (countdown) {
@@ -60,12 +71,16 @@ object TimerDisplayItems {
                         "${colors["disable"]}inaktiv"
                     }
                 }${colors["default"]}]")
+                flag(ItemFlag.HIDE_ENCHANTS)
             }
         }
     }
     fun timer(): ItemStack {
         return itemStack(Material.CLOCK) {
             amount = 1
+            if (timer){
+                addUnsafeEnchantment(Enchantment.DURABILITY, 1)
+            }
             meta {
                 name = literalText("${colors["value"]}Timer${colors["default"]} [${
                     if (timer) {
@@ -74,9 +89,66 @@ object TimerDisplayItems {
                         "${colors["disable"]}inaktiv"
                     }
                 }${colors["default"]}]")
+                flag(ItemFlag.HIDE_ENCHANTS)
             }
         }
     }
+
+    fun enderdragon(): ItemStack = itemStack(Material.DRAGON_EGG){
+        amount = 1
+        if (enderDragon){
+            addUnsafeEnchantment(Enchantment.DURABILITY, 1)
+        }
+        meta {
+            name = literalText("${colors["value"]}Enderdragon Kill${colors["default"]} [${
+                if (enderDragon) {
+                    "${colors["enable"]}aktiv"
+                } else {
+                    "${colors["disable"]}inaktiv"
+                }
+            }${colors["default"]}]")
+            flag(ItemFlag.HIDE_ENCHANTS)
+        }
+
+    }
+    fun bob(): ItemStack = itemStack(Material.SPONGE){
+        amount = 1
+        if (bob){
+            addUnsafeEnchantment(Enchantment.DURABILITY, 1)
+        }
+        meta {
+            name = literalText("${colors["value"]}Bob (Elder Guardian) Kill${colors["default"]} [${
+                if (bob) {
+                    "${colors["enable"]}aktiv"
+                } else {
+                    "${colors["disable"]}inaktiv"
+                }
+            }${colors["default"]}]")
+            flag(ItemFlag.HIDE_ENCHANTS)
+        }
+
+    }
+    fun wither(): ItemStack = itemStack(Material.WITHER_ROSE){
+        amount = 1
+        if (wither){
+            addUnsafeEnchantment(Enchantment.DURABILITY, 1)
+        }
+        meta {
+            name = literalText("${colors["value"]}Wither Kill${colors["default"]} [${
+                if (wither) {
+                    "${colors["enable"]}aktiv"
+                } else {
+                    "${colors["disable"]}inaktiv"
+                }
+            }${colors["default"]}]")
+            flag(ItemFlag.HIDE_ENCHANTS)
+        }
+
+    }
+
+
+
     val fill = itemStack(Material.GRAY_STAINED_GLASS_PANE){amount = 1; meta { name = literalText("") }}
+    val line = itemStack(Material.BLACK_STAINED_GLASS_PANE){amount = 1; meta { name = literalText("") }}
     val back = itemStack(Material.MAGENTA_GLAZED_TERRACOTTA){amount = 1; meta { name = literalText("${colors["default"]}back") }}
 }

@@ -23,6 +23,7 @@ fun setGets(){
     //Prefixes
     "STUtils".addPrefix("plugin", col("aqua"))
     "Timer".addPrefix(color = col("green"))
+    "World".addPrefix()
 
     //Usages
     setUsage("timer", "Verwendung: ${colors.get("command")}/timer ${colors.get("arg")}resume ${colors.get("default")}| ${colors.get("arg")}pause ${colors.get("default")}| ${colors.get("arg")}reset ${colors.get("default")}| ${colors.get("arg")}settings", "timer")

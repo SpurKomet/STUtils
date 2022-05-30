@@ -27,8 +27,20 @@ object settings {
             var colorOnRun = "gold"
             var colorOnPaused = "red"
         }
+        object challenges{
+            var enderDragon = false
+            var wither = false
+            var bob = false
+        }
     }
 
+    object World{
+        object difficulty{
+            var hardcore = false
+            var uHardcore = false
+            var uuHardcore = false
+        }
+    }
 
     object position{
         var position = false
