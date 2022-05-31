@@ -4,6 +4,7 @@ import de.spurowski.stutils.JMain.*
 import de.spurowski.stutils.settings.Config
 import de.spurowski.stutils.settings.settings
 import de.spurowski.stutils.utils.Commands
+import de.spurowski.stutils.utils.worldsettings.worldListener
 import net.axay.kspigot.main.KSpigot
 
 class InternalMainClass : KSpigot() {
@@ -16,15 +17,16 @@ class InternalMainClass : KSpigot() {
     override fun load() {
         INSTANCE = this
         var config = Config()
-        tOnLoad()
         settings.load()
+        tOnLoad()
     }
 
     override fun startup() {
+        setGets()
         tOnEnable()
         Listener()
-        setGets()
         Commands()
+        worldListener()
     }
 
     override fun shutdown() {

@@ -150,15 +150,15 @@ class TimerGUI {
 
             //--------------- timer.challenges ----------------------
             this.button(Slots.RowOneSlotOne, TimerDisplayItems.enderdragon()){
-                enderDragon = !enderDragon
+                if (!bob || !wither) enderDragon = !enderDragon
                 it.bukkitEvent.currentItem = TimerDisplayItems.enderdragon()
             }
             this.button(Slots.RowOneSlotTwo, TimerDisplayItems.bob()){
-                bob = !bob
+                if (!enderDragon || !wither) bob = !bob
                 it.bukkitEvent.currentItem = TimerDisplayItems.bob()
             }
             this.button(Slots.RowOneSlotThree, TimerDisplayItems.wither()){
-                wither = !wither
+                if (!bob || !enderDragon) wither = !wither
                 it.bukkitEvent.currentItem = TimerDisplayItems.wither()
             }
         }
