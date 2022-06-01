@@ -66,4 +66,8 @@ bukkit {
     commands.create("challenges")
     commands["challenges"].aliases = listOf("cha")
     commands["challenges"].description = "Die Challenges halt xD"
+    commands.create("reset")
+    commands["reset"].description = "zurücksetzen der Welt"
+    commands["reset"].permission = "stutils.reset"
+
 }

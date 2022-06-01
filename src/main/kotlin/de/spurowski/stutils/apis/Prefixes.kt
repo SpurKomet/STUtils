@@ -34,3 +34,6 @@ fun String.addPrefix(name: String = this.lowercase(),
 fun getPrefix(name: String): String =
     if(prefix.prefixTexts.get(name) != null) prefix.prefixTexts.get(name)!!
     else "${prefix.prefixDefault}${colors.get("error")}prefix.$name${prefix.postfixDefault} "
+
+
+

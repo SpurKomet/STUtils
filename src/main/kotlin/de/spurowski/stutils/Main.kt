@@ -27,7 +27,6 @@ class InternalMainClass : KSpigot() {
         Listener()
         Commands()
         worldListener()
-
     }
 
     override fun shutdown() {
