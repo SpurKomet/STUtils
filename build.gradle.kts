@@ -1,3 +1,6 @@
+import net.minecrell.pluginyml.bukkit.BukkitPluginDescription.Command
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     kotlin("jvm") version "1.6.21"
     id("io.papermc.paperweight.userdev") version "1.3.5"
@@ -31,7 +34,7 @@ dependencies {
 }
 
 tasks {
-    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    withType<KotlinCompile> {
         kotlinOptions {
             jvmTarget = "18"
         }
@@ -60,4 +63,7 @@ bukkit {
         "org.apache.httpcomponents:httpclient:4.5.13",
         "org.apache.httpcomponents:httpmime:4.5.13"
     )
+    commands.create("challenges")
+    commands["challenges"].aliases = listOf("cha")
+    commands["challenges"].description = "Die Challenges halt xD"
 }
