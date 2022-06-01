@@ -18,19 +18,20 @@ class InternalMainClass : KSpigot() {
         INSTANCE = this
         var config = Config()
         settings.load()
-        tOnLoad()
+        JMain().tOnLoad()
     }
 
     override fun startup() {
         setGets()
-        tOnEnable()
+        JMain().tOnEnable()
         Listener()
         Commands()
         worldListener()
+
     }
 
     override fun shutdown() {
-        tOnDisable()
+        JMain().tOnDisable()
         de.spurowski.stutils.settings.save()
         settings.save()
     }
