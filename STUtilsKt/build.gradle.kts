@@ -9,7 +9,7 @@ plugins {
 }
 val mcVersion = "1.18.2"
 
-group = "de.spurkomt"
+group = "de.spurkomet"
 version = "$mcVersion"
 
 repositories {
@@ -62,7 +62,5 @@ bukkit {
         "org.apache.httpcomponents:httpclient:4.5.13",
         "org.apache.httpcomponents:httpmime:4.5.13"
     )
-    depend = listOf("STUtilsJava")
-    loadBefore = listOf("STUtilsJava")
 
 }
