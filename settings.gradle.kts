@@ -1,4 +1,6 @@
 rootProject.name = "STUtils"
+include("STUtilsKt")
+include("STUtilsJava")
 
 pluginManagement {
     repositories {

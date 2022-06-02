@@ -1,0 +1,8 @@
+main: de.spurkomet.sutils.InternalMainClass
+name: STUtilsJava
+version: 1.18.2
+description: Utils Plugin von SpurKomet und tbodyowski
+api-version: 1.18
+author: tbodyowski
+depend:
+  - STUtilsKt
