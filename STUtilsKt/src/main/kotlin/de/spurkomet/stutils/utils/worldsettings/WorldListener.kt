@@ -1,6 +1,7 @@
 package de.spurkomet.stutils.utils.worldsettings
 
 import de.spurkomet.stutils.apis.getPrefix
+import de.spurkomet.stutils.colors
 import de.spurkomet.stutils.settings.settings.World.difficulty.hardcore
 import de.spurkomet.stutils.settings.settings.World.difficulty.uHardcore
 import de.spurkomet.stutils.settings.settings.World.difficulty.uuHardcore
@@ -28,9 +29,14 @@ import org.bukkit.potion.PotionType
 
 fun worldListener(){
     listen<PlayerDeathEvent> {PlayerDeathEvent ->
-        if (hardcore || uHardcore || uuHardcore){
-            if (!isRun) isRun = false
-            onlinePlayers.forEach { it.gameMode = GameMode.SPECTATOR; it.sendMessage("${getPrefix("world")}${PlayerDeathEvent.player.name} ist gestorben! - Game Over")}
+        if (hardcore || uHardcore || uuHardcore) {
+            if (isRun) isRun = false
+            onlinePlayers.forEach {
+                it.gameMode = GameMode.SPECTATOR
+                it.sendMessage("${getPrefix("world")}${PlayerDeathEvent.player.name} ist gestorben! - Game Over")
+                it.sendMessage("${getPrefix("world")}Seed: ${it.world.seed}")
+            }
+
         }
     }
     listen<EntityDeathEvent> {

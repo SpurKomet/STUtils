@@ -5,6 +5,7 @@ import de.spurkomet.stutils.settings.Config
 import de.spurkomet.stutils.settings.save
 import de.spurkomet.stutils.settings.settings
 import de.spurkomet.stutils.utils.Commands
+import de.spurkomet.stutils.utils.timer.timerListener
 import de.spurkomet.stutils.utils.worldsettings.worldListener
 import net.axay.kspigot.main.KSpigot
 
@@ -23,13 +24,18 @@ class InternalMainClass : KSpigot() {
 
     override fun startup() {
         setGets()
-        Listener()
         Commands()
-        worldListener()
+        callListener()
     }
 
     override fun shutdown() {
         save()
         settings.save()
+    }
+
+    fun callListener(){
+        Listener()
+        worldListener()
+        timerListener()
     }
 }

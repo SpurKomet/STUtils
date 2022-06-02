@@ -15,6 +15,7 @@ fun setGets(){
     colors.put("command", col("gray"))
 
     colors.put("admin", col("dark_aqua"))
+    colors.put("player", col("white"))
 
     colors.put("disable", col("dark_red"))
     colors.put("enable", col("dark_green"))
