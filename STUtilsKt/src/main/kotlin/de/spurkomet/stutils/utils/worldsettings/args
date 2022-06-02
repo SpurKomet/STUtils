@@ -1,0 +1,22 @@
+--- Umrunden ---
+this.placeholder(Slots.RowThreeSlotOne, WorldSettingsDisplayItems.fill)
+this.placeholder(Slots.RowThreeSlotNine, WorldSettingsDisplayItems.fill)
+this.placeholder(Slots.RowFourSlotOne, WorldSettingsDisplayItems.fill)
+this.placeholder(Slots.RowFourSlotNine, WorldSettingsDisplayItems.fill)
+this.placeholder(Slots.RowFive, WorldSettingsDisplayItems.fill)
+this.placeholder(Slots.RowTwo, WorldSettingsDisplayItems.fill)
+this.placeholder(Slots.RowOne, WorldSettingsDisplayItems.bottom)
+
+--- Bars ---
+this.placeholder(Slots.RowFive, WorldSettingsDisplayItems.fill)
+this.placeholder(Slots.RowTwo, WorldSettingsDisplayItems.fill)
+this.placeholder(Slots.RowOne, WorldSettingsDisplayItems.bottom)
+
+
+
+--- Page changes ---
+this.nextPage(Slots.RowOneSlotNine, WorldSettingsDisplayItems.next)
+this.previousPage(Slots.RowOneSlotOne, WorldSettingsDisplayItems.back)
+
+
+
